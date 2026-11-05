@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /Admin/
+Disallow: /Account
+Disallow: /Login
+Disallow: /Register
+Disallow: /EmailVerification
+
+Sitemap: http://localhost:3000/sitemap.xml

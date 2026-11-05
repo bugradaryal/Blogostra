@@ -1,0 +1,19 @@
+{
+  "Language": "Dil:",
+  "Account": "Hesabım",
+  "LogOut": "Çıkış",
+  "Chart": "Grafik",
+  "Users": "Kullanıcılar",
+  "PostM": "Post Yöneticisi",
+  "Home": "Ana Sayfa",
+  "Login": "Giriş",
+  "About": "Hakkımızda",
+  "Contact": "Bize Ulaşın",
+  "Register": "Kayıt ol",
+  "Theme": "Temayı değiştir",
+  "Menu": "Menü",
+  "Admin": "Yönetim",
+  "NotFoundTitle": "Sayfa bulunamadı",
+  "NotFoundText": "Aradığınız sayfa mevcut değil.",
+  "BackHome": "Ana sayfaya dön"
+}

@@ -1,0 +1,16 @@
+{
+  "blog": "Blogları Keşfet",
+  "search": "Ara",
+  "Default": "Varsayılan",
+  "Personal": "Kişisel",
+  "Travel": "Seyahat",
+  "Lifestyle": "Yaşam Tarzı",
+  "News": "Haberler",
+  "Marketing": "Pazarlama",
+  "Sports": "Sporlar",
+  "Movies": "Filmler",
+  "empty": "Yazı bulunamadı.",
+  "failed": "Yazılar yüklenemedi.",
+  "searchplaceholder": "Yazılarda ara",
+  "seodescription": "Seyahat, yaşam tarzı, spor, film ve daha fazlası hakkında yazıları keşfedin."
+}

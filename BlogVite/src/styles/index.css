@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f6f7f9;
+  --foreground: #161a22;
+  --surface: #ffffff;
+  --muted: #eceef2;
+  --muted-foreground: #666d7a;
+  --border: #dde0e6;
+  --input: #c9cdd6;
+  --primary: #161a22;
+  --primary-foreground: #ffffff;
+  --ring: #5b5fd6;
+  --destructive: #c8372d;
+  --success: #2f8f5b;
+}
+
+.dark {
+  --background: #0f1218;
+  --foreground: #eef0f4;
+  --surface: #171b23;
+  --muted: #212631;
+  --muted-foreground: #9aa1ae;
+  --border: #2b313d;
+  --input: #3a4150;
+  --primary: #eef0f4;
+  --primary-foreground: #161a22;
+  --ring: #8c90f0;
+  --destructive: #e5584d;
+  --success: #4cb67c;
+}
+
+[data-category] {
+  --hue: 220;
+  --cat: hsl(var(--hue) 55% 45%);
+  --cat-soft: hsl(var(--hue) 70% 94%);
+  --cat-ink: hsl(var(--hue) 60% 25%);
+}
+
+.dark [data-category] {
+  --cat: hsl(var(--hue) 55% 60%);
+  --cat-soft: hsl(var(--hue) 30% 20%);
+  --cat-ink: hsl(var(--hue) 70% 80%);
+}
+
+[data-category='Personal'] {
+  --hue: 330;
+}
+
+[data-category='Travel'] {
+  --hue: 190;
+}
+
+[data-category='Lifestyle'] {
+  --hue: 140;
+}
+
+[data-category='News'] {
+  --hue: 220;
+}
+
+[data-category='Marketing'] {
+  --hue: 270;
+}
+
+[data-category='Sports'] {
+  --hue: 40;
+}
+
+[data-category='Movies'] {
+  --hue: 10;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-cat: var(--cat);
+  --color-cat-soft: var(--cat-soft);
+  --color-cat-ink: var(--cat-ink);
+  --font-sans: 'Bricolage Grotesque Variable', sans-serif;
+  --font-serif: 'Literata Variable', serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}

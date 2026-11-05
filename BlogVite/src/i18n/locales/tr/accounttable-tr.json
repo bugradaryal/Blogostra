@@ -1,0 +1,12 @@
+{
+  "deletemodaltext": "Hesabın u işlemden sonra silinecektir. Bu işlem geri alınılamaz!",
+  "deletebutton": "Hesabı Sil",
+  "phonenum": "Telefon Numarası",
+  "address": "Adres",
+  "editaccountbutton": "Hesabı Düzenle",
+  "deleteaccountbutton": "Hesabı Sil",
+  "oldpass": "Eski Şifre",
+  "newpass": "Yeni Şifre",
+  "confpass": "Eski Şifreyi Doğrula",
+  "changepassbutton": "Şifre Değiştir"
+}

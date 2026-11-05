@@ -1,0 +1,14 @@
+{
+  "register": "Üye Ol",
+  "name": "Ad",
+  "surname": "Soyad",
+  "username": "Kullanıcı Adı",
+  "email": "Eposta",
+  "phonenum": "Telefon Numarası",
+  "address": "Adres",
+  "pass": "Şifre",
+  "confpass": "Şifreyi Doğrula",
+  "regbutton": "Üye Ol",
+  "registertext": "Hesabın var mı?",
+  "logintext": "Giriş Yap"
+}

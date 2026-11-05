@@ -1,0 +1,19 @@
+{
+  "Language": "Language",
+  "Account": "My Account",
+  "LogOut": "Log Out",
+  "Chart": "Chart",
+  "Users": "Users",
+  "PostM": "Post Manager",
+  "Home": "Home",
+  "Login": "Login",
+  "About": "About Us",
+  "Contact": "Contact Us",
+  "Register": "Register",
+  "Theme": "Toggle theme",
+  "Menu": "Menu",
+  "Admin": "Admin",
+  "NotFoundTitle": "Page not found",
+  "NotFoundText": "The page you are looking for does not exist.",
+  "BackHome": "Back to home"
+}

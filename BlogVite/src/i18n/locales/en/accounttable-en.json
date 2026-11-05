@@ -1,0 +1,12 @@
+{
+  "deletemodaltext": "Your account will be deleted after this action. This process is irreversible!",
+  "deletebutton": "Delete Account",
+  "phonenum": "Phone Number",
+  "address": "Address",
+  "editaccountbutton": "Edit Account",
+  "deleteaccountbutton": "Delete Account",
+  "oldpass": "Old Password",
+  "newpass": "New Password",
+  "confpass": "Confirm New Password",
+  "changepassbutton": "Change Password"
+}

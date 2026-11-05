@@ -1,0 +1,14 @@
+{
+  "register": "Register",
+  "name": "Name",
+  "surname": "Surname",
+  "username": "Username",
+  "email": "Email",
+  "phonenum": "Phone Number",
+  "address": "Address",
+  "pass": "Password",
+  "confpass": "Confirm Password",
+  "regbutton": "Register",
+  "registertext": "You have account?",
+  "logintext": "Login Now"
+}

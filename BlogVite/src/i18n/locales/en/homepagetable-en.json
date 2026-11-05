@@ -1,0 +1,16 @@
+{
+  "blog": "Discover Blogs",
+  "search": "Search",
+  "Default": "Default",
+  "Personal": "Personal",
+  "Travel": "Travel",
+  "Lifestyle": "Lifestyle",
+  "News": "News",
+  "Marketing": "Marketing",
+  "Sports": "Sports",
+  "Movies": "Movies",
+  "empty": "No posts found.",
+  "failed": "Posts could not be loaded.",
+  "searchplaceholder": "Search posts",
+  "seodescription": "Read and discover posts on travel, lifestyle, sports, movies and more."
+}
