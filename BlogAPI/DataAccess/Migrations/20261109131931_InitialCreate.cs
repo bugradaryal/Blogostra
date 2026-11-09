@@ -1,3 +1,4 @@
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -175,13 +176,35 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RefreshTokens",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    TokenHash = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime", nullable: false),
+                    ExpiresAt = table.Column<DateTime>(type: "datetime", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RefreshTokens", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RefreshTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(250)", maxLength: 250, nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2025, 1, 6, 17, 33, 46, 650, DateTimeKind.Local).AddTicks(5030)),
+                    Date = table.Column<DateTime>(type: "datetime", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(1800)", maxLength: 1800, nullable: false),
                     Image = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     category_id = table.Column<int>(type: "int", nullable: false)
@@ -206,7 +229,7 @@ namespace DataAccess.Migrations
                     user_id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(240)", maxLength: 240, nullable: false),
                     post_id = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2025, 1, 6, 17, 33, 46, 650, DateTimeKind.Local).AddTicks(7530)),
+                    Date = table.Column<DateTime>(type: "datetime", nullable: false),
                     Content = table.Column<string>(type: "nvarchar(720)", maxLength: 720, nullable: false)
                 },
                 constraints: table =>
@@ -233,8 +256,8 @@ namespace DataAccess.Migrations
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     post_id = table.Column<int>(type: "int", nullable: false),
-                    Date = table.Column<DateTime>(type: "datetime", nullable: false, defaultValue: new DateTime(2025, 1, 6, 17, 33, 46, 650, DateTimeKind.Local).AddTicks(6426)),
-                    user_id = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    user_id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -258,9 +281,14 @@ namespace DataAccess.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "096d52be-95c6-4ac9-b0a3-a0e8438d7a22", null, "Administrator", "ADMİNİSTRATOR" },
+                    { "096d52be-95c6-4ac9-b0a3-a0e8438d7a22", null, "Administrator", "ADMINISTRATOR" },
                     { "0dd85ee5-2c4f-4af7-8f8e-6cb389244547", null, "User", "USER" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "Address", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "Surname", "TwoFactorEnabled", "UserName" },
+                values: new object[] { "058fc4dd-2ece-4290-8ac7-d2c4cc96c9c7", 0, "Istanbul", "55ea2f83-a552-461e-befe-b67e26d1ae73", "oyuasx@gmail.com", true, true, null, "Oyuasx", "OYUASX@GMAIL.COM", "OYUASX", "AQAAAAIAAYagAAAAEM9HAAtAOpsqTutJygMXTyg6AN8ChcISPTfVTHxRixUVPVP0rco+1cVx/te7OTf2Zg==", "5551234567", false, "dfeb9f52-8a29-48f2-8c9f-ab9aab870bb4", "Admin", false, "Oyuasx" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
@@ -275,6 +303,11 @@ namespace DataAccess.Migrations
                     { 6, "Sports" },
                     { 7, "Movies" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { "096d52be-95c6-4ac9-b0a3-a0e8438d7a22", "058fc4dd-2ece-4290-8ac7-d2c4cc96c9c7" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -346,6 +379,17 @@ namespace DataAccess.Migrations
                 name: "IX_Posts_category_id",
                 table: "Posts",
                 column: "category_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_TokenHash",
+                table: "RefreshTokens",
+                column: "TokenHash",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_UserId",
+                table: "RefreshTokens",
+                column: "UserId");
         }
 
         /// <inheritdoc />
@@ -373,13 +417,16 @@ namespace DataAccess.Migrations
                 name: "Likes");
 
             migrationBuilder.DropTable(
+                name: "RefreshTokens");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "Posts");
 
             migrationBuilder.DropTable(
-                name: "Posts");
+                name: "AspNetUsers");
 
             migrationBuilder.DropTable(
                 name: "Categories");

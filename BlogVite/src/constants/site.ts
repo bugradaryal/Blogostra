@@ -1,1 +1,1 @@
-export const SITE_NAME = 'MyBlog';
+export const SITE_NAME = 'Blogostra';

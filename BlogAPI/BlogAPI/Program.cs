@@ -77,16 +77,26 @@ try
             BearerFormat = "JWT",
             Scheme = "Bearer"
         });
+        option.AddSecurityDefinition("RefreshToken", new OpenApiSecurityScheme
+        {
+            In = ParameterLocation.Header,
+            Name = "RefreshToken",
+            Type = SecuritySchemeType.ApiKey,
+            Description = "Login response header'ýndaki RefreshToken deðeri"
+        });
         option.AddSecurityRequirement(new OpenApiSecurityRequirement
         {
             {
                 new OpenApiSecurityScheme
                 {
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    }
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" }
+                },
+                Array.Empty<string>()
+            },
+            {
+                new OpenApiSecurityScheme
+                {
+                    Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "RefreshToken" }
                 },
                 Array.Empty<string>()
             }
