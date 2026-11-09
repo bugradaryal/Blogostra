@@ -26,7 +26,7 @@ interface NewPost {
   title: string;
   content: string;
   category: string;
-  image: Uint8Array | null;
+  image: string | null;
 }
 
 export const addPost = ({ title, content, category, image }: NewPost) =>
@@ -34,7 +34,7 @@ export const addPost = ({ title, content, category, image }: NewPost) =>
     Title: title,
     Content: content,
     Category: category,
-    Image: image ? Array.from(image) : '',
+    Image: image ?? '',
   });
 
 interface PostUpdate {

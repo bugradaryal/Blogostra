@@ -29,5 +29,10 @@
   "username": "Kullanıcı Adı",
   "nocomment": "Yorum yok",
   "suspend": "Uzaklaştır",
-  "email": "Eposta"
+  "email": "Eposta",
+  "image": "Görsel",
+  "chooseimage": "Görsel seçmek için tıklayın",
+  "imageerror": "Bu görsel okunamadı. Başka bir dosya deneyin.",
+  "addfailed": "Yazı eklenemedi.",
+  "postadded": "Yazı eklendi!"
 }

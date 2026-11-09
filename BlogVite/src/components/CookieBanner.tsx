@@ -10,7 +10,7 @@ const CookieBanner = () => {
   if (!isAnalyticsConfigured || consent !== null) return null;
 
   return (
-    <div className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-xl rounded-lg border bg-surface p-4">
+    <div className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-xl animate-rise rounded-2xl border bg-surface p-4 shadow-2xl">
       <p className="font-semibold">{t('title')}</p>
       <p className="mt-1 text-sm text-muted-foreground">{t('text')}</p>
       <div className="mt-3 flex gap-3">

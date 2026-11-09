@@ -6,29 +6,33 @@ export const toImageSrc = (image: string) =>
 export const postImageSrc = (image?: string | null) =>
   image && image !== EMPTY_IMAGE ? toImageSrc(image) : null;
 
-export const fileToBytes = (file: File) =>
-  new Promise<Uint8Array>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(new Uint8Array(reader.result as ArrayBuffer));
-    reader.onerror = () => reject(reader.error);
-    reader.readAsArrayBuffer(file);
-  });
+const MAX_IMAGE_SIDE = 1600;
 
-export const fileToJpegDataUrl = (file: File) =>
+// Her biçimi (png, webp, gif, avif...) JPEG'e çevirir ve uzun kenarı küçültür;
+// böylece sunucuya her zaman küçük ve tek biçimli bir görsel gider.
+export const fileToJpegDataUrl = (file: File, maxSide = MAX_IMAGE_SIDE) =>
   new Promise<string>((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onerror = () => reject(reader.error);
-    reader.onload = () => {
-      const img = new Image();
-      img.onerror = () => reject(new Error('Image could not be loaded'));
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        canvas.width = img.width;
-        canvas.height = img.height;
-        canvas.getContext('2d')?.drawImage(img, 0, 0);
-        resolve(canvas.toDataURL('image/jpeg'));
-      };
-      img.src = reader.result as string;
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('Image could not be loaded'));
     };
-    reader.readAsDataURL(file);
+    img.onload = () => {
+      URL.revokeObjectURL(url);
+      const scale = Math.min(1, maxSide / Math.max(img.naturalWidth, img.naturalHeight));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.max(1, Math.round(img.naturalWidth * scale));
+      canvas.height = Math.max(1, Math.round(img.naturalHeight * scale));
+      const context = canvas.getContext('2d');
+      if (!context) {
+        reject(new Error('Canvas is not available'));
+        return;
+      }
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(img, 0, 0, canvas.width, canvas.height);
+      resolve(canvas.toDataURL('image/jpeg', 0.86));
+    };
+    img.src = url;
   });

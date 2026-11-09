@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/layout/Header';
 import Footer from './components/layout/Footer';
 import CookieBanner from './components/CookieBanner';
@@ -23,12 +23,15 @@ const ManageComments = lazy(() => import('./pages/admin/Posts/ManageComments'));
 const ADMIN_ROLE = 'Administrator';
 
 function App() {
+  const location = useLocation();
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 sm:py-12">
+      <main className="page-container flex-1 py-8 sm:py-12">
         <Suspense fallback={null}>
-          <Routes>
+          <div key={location.pathname} className="animate-page-in">
+          <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/post/:id/:slug?" element={<Blog />} />
             <Route path="/Login" element={<Login />} />
@@ -48,6 +51,7 @@ function App() {
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
+          </div>
         </Suspense>
       </main>
       <Footer />

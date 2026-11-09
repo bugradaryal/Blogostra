@@ -29,5 +29,10 @@
   "username": "User Name",
   "nocomment": "No Comment",
   "suspend": "Suspend",
-  "email": "Email"
+  "email": "Email",
+  "image": "Image",
+  "chooseimage": "Click to choose an image",
+  "imageerror": "This image could not be read. Try another file.",
+  "addfailed": "The post could not be added.",
+  "postadded": "Post added!"
 }

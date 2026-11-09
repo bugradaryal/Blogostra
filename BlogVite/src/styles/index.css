@@ -3,46 +3,48 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --background: #f6f7f9;
-  --foreground: #161a22;
+  --background: #f3f4fb;
+  --foreground: #14162e;
   --surface: #ffffff;
-  --muted: #eceef2;
-  --muted-foreground: #666d7a;
-  --border: #dde0e6;
-  --input: #c9cdd6;
-  --primary: #161a22;
+  --muted: #e9ebf7;
+  --muted-foreground: #5f647d;
+  --border: #dcdff0;
+  --input: #c5cae3;
+  --primary: #3a43f0;
   --primary-foreground: #ffffff;
-  --ring: #5b5fd6;
-  --destructive: #c8372d;
-  --success: #2f8f5b;
+  --ring: #3a43f0;
+  --destructive: #d6362b;
+  --success: #1f9d62;
+  --like: #2563eb;
 }
 
 .dark {
-  --background: #0f1218;
-  --foreground: #eef0f4;
-  --surface: #171b23;
-  --muted: #212631;
-  --muted-foreground: #9aa1ae;
-  --border: #2b313d;
-  --input: #3a4150;
-  --primary: #eef0f4;
-  --primary-foreground: #161a22;
-  --ring: #8c90f0;
-  --destructive: #e5584d;
-  --success: #4cb67c;
+  --background: #0b0d1a;
+  --foreground: #eceefb;
+  --surface: #131733;
+  --muted: #1c2145;
+  --muted-foreground: #9aa0c4;
+  --border: #262c55;
+  --input: #353c6d;
+  --primary: #8a92ff;
+  --primary-foreground: #0b0d1a;
+  --ring: #8a92ff;
+  --destructive: #ff6b5e;
+  --success: #4cc98a;
+  --like: #60a5fa;
 }
 
 [data-category] {
   --hue: 220;
-  --cat: hsl(var(--hue) 55% 45%);
-  --cat-soft: hsl(var(--hue) 70% 94%);
-  --cat-ink: hsl(var(--hue) 60% 25%);
+  --cat: hsl(var(--hue) 60% 48%);
+  --cat-soft: hsl(var(--hue) 75% 93%);
+  --cat-ink: hsl(var(--hue) 65% 28%);
 }
 
 .dark [data-category] {
-  --cat: hsl(var(--hue) 55% 60%);
-  --cat-soft: hsl(var(--hue) 30% 20%);
-  --cat-ink: hsl(var(--hue) 70% 80%);
+  --cat: hsl(var(--hue) 65% 62%);
+  --cat-soft: hsl(var(--hue) 35% 21%);
+  --cat-ink: hsl(var(--hue) 75% 82%);
 }
 
 [data-category='Personal'] {
@@ -86,6 +88,7 @@
   --color-ring: var(--ring);
   --color-destructive: var(--destructive);
   --color-success: var(--success);
+  --color-like: var(--like);
   --color-cat: var(--cat);
   --color-cat-soft: var(--cat-soft);
   --color-cat-ink: var(--cat-ink);
@@ -93,17 +96,116 @@
   --font-serif: 'Literata Variable', serif;
 }
 
-* {
-  border-color: var(--border);
+@theme {
+  --animate-rise: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-page-in: page-in 0.3s ease-out both;
+  --animate-menu-in: menu-in 0.16s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 0.4s cubic-bezier(0.3, 1.6, 0.5, 1);
+  --animate-drift: drift 14s ease-in-out infinite alternate;
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes page-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(1);
+    }
+    45% {
+      transform: scale(1.4) rotate(-8deg);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes drift {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    to {
+      transform: translate3d(3rem, 2rem, 0) scale(1.15);
+    }
+  }
 }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
+@utility page-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 100rem;
+  padding-inline: 1rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding-inline: 3rem;
+  }
 }
 
-:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    background-color: var(--background);
+    background-image: radial-gradient(
+      70rem 32rem at 88% -8%,
+      color-mix(in oklab, var(--primary) 13%, transparent),
+      transparent
+    );
+    background-repeat: no-repeat;
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--primary) 30%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
